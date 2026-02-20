@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>ブルーメンヘラ — terminal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Title Bar -->
+  <div class="titlebar">
+    <div class="titlebar__dots">
+      <span class="titlebar__dot titlebar__dot--close"></span>
+      <span class="titlebar__dot titlebar__dot--min"></span>
+      <span class="titlebar__dot titlebar__dot--max"></span>
+    </div>
+    <div class="titlebar__title">bluemenhera@tokyo — bash</div>
+  </div>
+
+  <!-- Output -->
+  <div class="output-wrap">
+    <div class="output"></div>
+  </div>
+
+  <!-- Input -->
+  <div class="input-bar">
+    <span class="input-bar__prompt">bmc $</span>
+    <input
+      class="input-bar__field"
+      type="text"
+      placeholder="type 'help' or tap below"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+    >
+  </div>
+
+  <!-- Quick Commands -->
+  <div class="quick-cmds">
+    <button class="quick-cmds__btn" data-cmd="about">about</button>
+    <button class="quick-cmds__btn" data-cmd="services">services</button>
+    <button class="quick-cmds__btn" data-cmd="ran2">ran2</button>
+    <button class="quick-cmds__btn" data-cmd="bmh">bmh</button>
+    <button class="quick-cmds__btn" data-cmd="dev">dev</button>
+    <button class="quick-cmds__btn" data-cmd="sukipi">sukipi</button>
+    <button class="quick-cmds__btn" data-cmd="oniden">oniden</button>
+    <button class="quick-cmds__btn" data-cmd="floppy">floppy</button>
+    <button class="quick-cmds__btn" data-cmd="contact">contact</button>
+    <button class="quick-cmds__btn" data-cmd="help">help</button>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

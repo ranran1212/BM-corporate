@@ -10,18 +10,23 @@ const SEP = '<span class="t-dim">───────────────�
 /* ── service block builder ── */
 
 function serviceBlock({ name, category, main, sub, description }) {
-  return [
+  const lines = [
     { html: '' },
     { html: SEP },
     { html: `<span class="t-head">${esc(name)}</span>  <span class="t-dim">${esc(category)}</span>` },
     { html: SEP },
     { html: '' },
     { html: `<span class="t-main">${esc(main)}</span>` },
-    { html: `<span class="t-sub">${esc(sub)}</span>` },
+  ];
+  if (sub) {
+    lines.push({ html: `<span class="t-sub">${esc(sub)}</span>` });
+  }
+  lines.push(
     { html: '' },
     { html: `<span class="t-body">${esc(description)}</span>` },
     { html: '' },
-  ];
+  );
+  return lines;
 }
 
 /* ── command definitions ── */
@@ -35,10 +40,10 @@ commands.help = (term) => {
     { html: '  <span class="t-teal">about</span>      会社概要・ビジョン' },
     { html: '  <span class="t-teal">services</span>   事業一覧（ls でも可）' },
     { html: '  <span class="t-teal">ran2</span>       RAN\u00B2 BooTH — 展示会ブース施工' },
-    { html: '  <span class="t-teal">bmh</span>        BMH — イベント制作運営' },
+    { html: '  <span class="t-teal">bmh</span>        BMH — 統合型イベントソリューション' },
     { html: '  <span class="t-teal">dev</span>        アプリ開発支援' },
     { html: '  <span class="t-teal">sukipi</span>     すきぴチェッカー' },
-    { html: '  <span class="t-teal">oniden</span>     鬼電ちゃん' },
+    { html: '  <span class="t-teal">oniden</span>     鬼電ちゃん — 鬼電の自動化ツール' },
     { html: '  <span class="t-teal">floppy</span>     super floppy' },
     { html: '  <span class="t-teal">contact</span>    お問い合わせ・リンク' },
     { html: '  <span class="t-teal">spec</span>       会社スペック' },
@@ -64,13 +69,17 @@ commands.about = (term) => {
     { html: '<span class="t-poetry">みんな、心のどこかにゆがみを抱えて生きている。</span>' },
     { html: '<span class="t-poetry">平気なふりをして笑ったり、独りになって不安になったり、</span>' },
     { html: '<span class="t-poetry">本当はいいねと思っていないのに「いいね」と言ったり。</span>' },
+    { html: '' },
+    { html: '<span class="t-poetry">"こうあるべき"が強すぎる社会で、</span>' },
+    { html: '<span class="t-poetry">私たちは自分の輪郭を削って、うまく生きる練習ばかりしてきた。</span>' },
+    { html: '' },
     { html: '<span class="t-poetry">でも、そんなゆがみがあるからこそ人間らしくて、</span>' },
     { html: '<span class="t-poetry">そのゆがみこそ、実は愛すべき存在なのかもしれない。</span>' },
     { html: '' },
     { html: '<span class="t-poetry">これまでにないサービスは、これまで言えなかった気持ちから始まる。</span>' },
     { html: '<span class="t-poetry">ゆがみは、新しい可能性のカタチだ。</span>' },
-    { html: '<span class="t-poetry">さぁ、一人一人のゆがみを、新しい未来へのひろがりに。</span>' },
-    { html: '<span class="t-poetry">押し殺していた声を、新しい時代の産声に。</span>' },
+    { html: '<span class="t-poetry">一人ひとりのゆがみを、新しい未来へのひろがりに。</span>' },
+    { html: '<span class="t-poetry">押し殺していた声で、"正しさの独裁"をほどいていこう。</span>' },
     { html: '<span class="t-poetry">何かをずっと抱えてきた人こそ、新しい何かをつくっていける。</span>' },
     { html: '' },
   ]);
@@ -82,11 +91,11 @@ commands.services = commands.ls = (term) => {
     { html: '<span class="t-teal2 t-bold">C:\\BlueMenhera\\Services\\</span>' },
     { html: SEP },
     { html: '  <span class="t-teal">ran2</span>     RAN\u00B2 BooTH    <span class="t-dim">展示会ブース施工</span>' },
-    { html: '  <span class="t-teal">bmh</span>      BMH           <span class="t-dim">イベント制作運営</span>' },
+    { html: '  <span class="t-teal">bmh</span>      BMH           <span class="t-dim">統合型イベントソリューション</span>' },
     { html: '  <span class="t-teal">dev</span>      アプリ開発支援  <span class="t-dim">App Dev Support</span>' },
-    { html: '  <span class="t-teal">sukipi</span>   すきぴチェッカー <span class="t-dim">自社アプリ</span>' },
-    { html: '  <span class="t-teal">oniden</span>   鬼電ちゃん     <span class="t-dim">自社アプリ</span>' },
-    { html: '  <span class="t-teal">floppy</span>   super floppy  <span class="t-dim">自社アプリ β</span>' },
+    { html: '  <span class="t-teal">sukipi</span>   すきぴチェッカー <span class="t-dim">自社アプリ Coming Soon</span>' },
+    { html: '  <span class="t-teal">oniden</span>   鬼電ちゃん     <span class="t-dim">鬼電の自動化ツール</span>' },
+    { html: '  <span class="t-teal">floppy</span>   super floppy  <span class="t-dim">自社アプリ</span>' },
     { html: SEP },
     { html: '<span class="t-dim">6 items. Type command name for details.</span>' },
     { html: '' },
@@ -99,27 +108,35 @@ commands.ran2 = commands.booth = commands.ran = (term) => {
   term.typeLines(serviceBlock({
     name: 'RAN\u00B2 BooTH',
     category: '展示会ブース施工',
-    main: '木工に負けない。価格はシステムブース並み。',
-    sub: '2コマ27万円〜。中小企業のための高品質SEGブース施工。',
+    main: '木工造作に負けないクオリティを、半額以下の価格で。',
+    sub: '布とLEDライトで壁面全体が光る、次世代の展示会ブースです。',
     description:
-      '内照式SEGライトボックスを活用し、視認性とデザイン性を両立。\n' +
-      '再利用可能な構造によりコストを抑えつつ、木工同等の世界観を実現します。\n' +
-      '設計〜施工〜撤収まで一貫対応。\n' +
-      '限られた予算で成果を出したい企業のための合理的な選択肢です。',
+      '木工造作並みの見栄えを、半額以下のコストで実現。\n' +
+      '廃棄物ゼロ・CO2排出75%削減で、SDGs推進にも貢献します。',
   }));
 };
 
 commands.bmh = commands.event = (term) => {
   term.typeLines(serviceBlock({
     name: 'BMH',
-    category: 'イベント制作運営',
-    main: '企画で終わらせない。',
-    sub: '設計から当日運営まで実装するイベントプロデュース。',
+    category: '統合型イベントソリューション',
+    main: 'イベントを、構造から再設計する。',
+    sub: '多重下請け構造を解体する、統合型イベントソリューション。',
     description:
-      '企業イベント・展示会・プロモーション施策を企画段階から構造設計。\n' +
-      '演出、導線設計、スタッフ運営まで統合し、"崩れない現場"を実現します。\n' +
-      '100名規模以上の運営設計にも対応。\n' +
-      '成果につながる体験設計を提供します。',
+      'イベント業界では、\n' +
+      '多重下請け構造により予算が分断され、\n' +
+      '本来必要なクリエイティブや現場品質に資源が届かないという課題があります。\n' +
+      '\n' +
+      '私たちは、その構造自体を再設計します。\n' +
+      '\n' +
+      'イベント制作、運営、施工、クリエイティブ、ITの5部門を統合的に提供。\n' +
+      '分断をなくし、コストと品質を最適化。\n' +
+      '\n' +
+      'さらに、データドリブン採用基盤により、\n' +
+      '約800名のイベントスタッフ、AD、ディレクターが在籍。\n' +
+      '\n' +
+      '企画から当日運営、施工まで一貫提供する\n' +
+      '統合型イベントソリューションです。',
   }));
 };
 
@@ -138,41 +155,46 @@ commands.dev = commands.app = (term) => {
 };
 
 commands.sukipi = (term) => {
-  term.typeLines(serviceBlock({
-    name: 'すきぴチェッカー',
-    category: '自社アプリ',
-    main: '恋を、可視化する。',
-    sub: '感情をエンタメに変える診断アプリ。',
-    description:
-      '会話や行動傾向から"すきぴ度"を数値化。\n' +
-      '友達同士でも楽しめるシェア前提設計で拡散性を重視。\n' +
-      '感情整理とエンタメを両立する自社開発コンテンツです。',
-  }));
+  term.typeLines([
+    { html: '' },
+    { html: SEP },
+    { html: `<span class="t-head">${esc('すきぴチェッカー')}</span>  <span class="t-dim">${esc('自社アプリ')}</span>  <span class="t-accent">Coming Soon</span>` },
+    { html: SEP },
+    { html: '' },
+    { html: `<span class="t-main">${esc('あなたの片想い、実は両想いかも？')}</span>` },
+    { html: '' },
+    { html: `<span class="t-body">${esc('すきぴチェッカーは InstagramのIDを登録するだけで')}</span>` },
+    { html: `<span class="t-body">${esc('あなたと"すきぴ"が両想いかどうかを確認できるアプリです。')}</span>` },
+    { html: '' },
+    { html: `<span class="t-body">${esc('両想いになるまでは、こっそり使えます。')}</span>` },
+    { html: '' },
+  ]);
 };
 
 commands.oniden = (term) => {
   term.typeLines(serviceBlock({
     name: '鬼電ちゃん',
-    category: '自社アプリ',
-    main: '通知は、エンタメだ。',
-    sub: '着信体験をアップデートするコミュニケーションアプリ。',
+    category: '鬼電の自動化ツール',
+    main: '起きるまで、かけ続けます。',
+    sub: '',
     description:
-      '連続通知や独自演出で存在感を最大化。\n' +
-      '日常のコミュニケーションを"イベント化"します。\n' +
-      '話題化とIP展開を視野に入れた実験的プロダクトです。',
+      '現在、企業向けにアルバイトの起床確認や出発確認向けに展開中。\n' +
+      'アルバイトが起きるまで電話をかけ続けます。\n' +
+      '起きていないアルバイトがいたら、担当者に電話がかかります。\n' +
+      '\n' +
+      'C向けの鬼電自動化アプリもリリース予定。',
   }));
 };
 
 commands.floppy = commands.sf = (term) => {
   term.typeLines(serviceBlock({
     name: 'super floppy',
-    category: '自社アプリ β',
+    category: '自社アプリ',
     main: '月末を、シンプルに。',
     sub: '時間単価メンバーの工数をリアルタイム可視化。',
     description:
       'フリーランスや制作会社向けの超シンプル稼働管理アプリ。\n' +
       '日々の作業時間を記録するだけで月末請求の不安を回避。\n' +
-      'βテスター企業募集中。\n' +
       '複雑な管理は不要、必要なのは"今どれだけ動いているか"だけです。',
   }));
 };
@@ -182,8 +204,8 @@ commands.contact = (term) => {
     { html: '' },
     { html: '<span class="t-teal2 t-bold">Contact / Links</span>' },
     { html: SEP },
-    { html: '  <a class="t-link" href="https://forms.gle/f5Y7dhLjiE4YWpxQ8" target="_blank">お問い合わせフォーム</a>' },
-    { html: '  <a class="t-link" href="https://menherasenpai.notion.site/1e90ec5d9fc1410985a8e24014a93c8a" target="_blank">採用情報</a>' },
+    { html: '  <a class="t-link" href="https://tally.so/r/MezNLg" target="_blank">お問い合わせフォーム</a>' },
+    { html: '  <a class="t-link" href="https://jp.indeed.com/cmp/株式会社ブルーメンヘラ/jobs" target="_blank">採用情報</a>' },
     { html: '  <a class="t-link" href="https://www.notion.so/menherasenpai/70a4f795950846b6aa3cb0d5ac47e005" target="_blank">会社概要（Notion）</a>' },
     { html: SEP },
     { html: '' },
@@ -197,13 +219,15 @@ commands.spec = commands.info = (term) => {
     { html: SEP },
     { html: '  <span class="t-dim">company:</span>  株式会社ブルーメンヘラ' },
     { html: '  <span class="t-dim">former:</span>   <span class="t-strike">REIGETSU</span> <span class="t-red">[deprecated]</span>' },
-    { html: '  <span class="t-dim">ceo:</span>      Ranka' },
+    { html: '  <span class="t-dim">address:</span>  東京都豊島区南池袋3丁目13-5 KJ南池袋ビル3F' },
+    { html: '  <span class="t-dim">tel:</span>      03-6804-5891' },
+    { html: '  <span class="t-dim">ceo:</span>      高桑蘭佳（CEO）' },
+    { html: '  <span class="t-dim">coo:</span>      向山口冬威（COO）' },
     { html: '  <span class="t-dim">founded:</span>  2018' },
-    { html: '  <span class="t-dim">location:</span> Tokyo, JP' },
     { html: '  <span class="t-dim">team:</span>     正社員 10名' },
     { html: '  <span class="t-dim">staff:</span>    登録約 1,500名' },
     { html: '  <span class="t-dim">revenue:</span>  ¥300,000,000 / year' },
-    { html: '  <span class="t-dim">supply:</span>   中国製造 × 国内施工' },
+    { html: '  <span class="t-dim">biz:</span>      展示会ブース施工 / イベント制作運営 / アプリ開発' },
     { html: '  <span class="t-dim">motto:</span>    <span class="t-teal">"ゆがみを、愛す。"</span>' },
     { html: SEP },
     { html: '' },

@@ -38,7 +38,7 @@ export class Terminal {
 
   promptLine(cmd) {
     this.addRaw(
-      `<span class="t-teal t-bold">bmc $ </span><span class="t-cmd">${Terminal.escapeHtml(cmd)}</span>\n`
+      `<span class="t-teal t-bold">bm $ </span><span class="t-cmd">${Terminal.escapeHtml(cmd)}</span>\n`
     );
   }
 

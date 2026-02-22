@@ -231,6 +231,10 @@ body {
   white-space: nowrap;
 }
 
+/* --- Lock Screen --- */
+body.is-locked .quick-cmds { display: none; }
+body.is-locked .input-bar__field { -webkit-text-security: disc; }
+
 /* --- Responsive --- */
 @media (max-width: 600px) {
   body { font-size: 12px; }

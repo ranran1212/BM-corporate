@@ -8,8 +8,13 @@ import commands from './commands.js';
 const outputEl = document.querySelector('.output');
 const wrapEl = document.querySelector('.output-wrap');
 const inputEl = document.querySelector('.input-bar__field');
+const promptEl = document.querySelector('.input-bar__prompt');
 
 const term = new Terminal(outputEl, wrapEl);
+
+/* ── auth state ── */
+const PASSWORD = 'yugami';
+let locked = true;
 
 /* ── auto-demo state ── */
 let autoMode = true;
@@ -19,6 +24,8 @@ let autoTimer = null;
 /* ── command execution ── */
 
 function exec(raw) {
+  if (locked) return;
+
   if (autoMode) {
     autoMode = false;
     clearTimeout(autoTimer);
@@ -92,7 +99,12 @@ inputEl.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const value = inputEl.value;
     inputEl.value = '';
-    exec(value);
+
+    if (locked) {
+      tryUnlock(value);
+    } else {
+      exec(value);
+    }
   }
 });
 
@@ -106,6 +118,32 @@ document.querySelector('.quick-cmds').addEventListener('click', (e) => {
 
 // Focus input on tap
 wrapEl.addEventListener('click', () => inputEl.focus());
+
+/* ── lock screen ── */
+
+function tryUnlock(input) {
+  term.addRaw('<span class="t-dim">Password: ********</span>\n');
+
+  if (input === PASSWORD) {
+    term.typeLines([
+      { html: '<span class="t-green">Access granted.</span>' },
+      { html: '' },
+      { pause: 400 },
+    ]).then(() => {
+      locked = false;
+      document.body.classList.remove('is-locked');
+      promptEl.textContent = 'bm $';
+      inputEl.placeholder = "type 'help' or tap below";
+      term.clear();
+      bootSequence();
+    });
+  } else {
+    term.typeLines([
+      { html: '<span class="t-red">Access denied.</span>' },
+      { html: '' },
+    ]);
+  }
+}
 
 /* ── boot ── */
 
@@ -121,8 +159,27 @@ const BOOT_LINES = [
   { html: '' },
 ];
 
-term.typeLines(BOOT_LINES).then(() => {
-  autoTimer = setTimeout(() => {
-    if (autoMode) runDemo();
-  }, 3500);
-});
+function bootSequence() {
+  term.typeLines(BOOT_LINES).then(() => {
+    autoTimer = setTimeout(() => {
+      if (autoMode) runDemo();
+    }, 3500);
+  });
+}
+
+/* ── init: show lock screen ── */
+
+document.body.classList.add('is-locked');
+promptEl.textContent = 'login $';
+inputEl.placeholder = 'enter password';
+
+term.typeLines([
+  { html: '<span class="t-dim">[system] Blue Menhera OS v2.026</span>', delay: 60 },
+  { html: '<span class="t-dim">[system] authentication required.</span>', delay: 60 },
+  { html: '' },
+  { html: '<span class="t-teal">This terminal is locked.</span>' },
+  { html: '<span class="t-dim">Enter password to continue.</span>' },
+  { html: '' },
+]);
+
+inputEl.focus();

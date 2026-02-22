@@ -39,12 +39,12 @@ commands.help = (term) => {
     { html: '' },
     { html: '  <span class="t-teal">about</span>      会社概要・ビジョン' },
     { html: '  <span class="t-teal">services</span>   事業一覧（ls でも可）' },
-    { html: '  <span class="t-teal">ran2</span>       RAN\u00B2 BooTH — 展示会ブース施工' },
-    { html: '  <span class="t-teal">bmh</span>        BMH — 統合型イベントソリューション' },
-    { html: '  <span class="t-teal">dev</span>        アプリ開発支援' },
-    { html: '  <span class="t-teal">sukipi</span>     すきぴチェッカー' },
-    { html: '  <span class="t-teal">oniden</span>     鬼電ちゃん — 鬼電の自動化ツール' },
-    { html: '  <span class="t-teal">floppy</span>     super floppy' },
+    { html: '  <span class="t-teal">ran2</span>       💡 RAN\u00B2 BooTH — 展示会ブース施工' },
+    { html: '  <span class="t-teal">bmh</span>        🧙 BMH — 統合型イベントソリューション' },
+    { html: '  <span class="t-teal">dev</span>        💻 アプリ開発支援' },
+    { html: '  <span class="t-teal">sukipi</span>     🩷 すきぴチェッカー' },
+    { html: '  <span class="t-teal">oniden</span>     👹 鬼電ﾁｬﾝ — 鬼電の自動化ツール' },
+    { html: '  <span class="t-teal">floppy</span>     👁️ スーパーフロッピー' },
     { html: '  <span class="t-teal">contact</span>    お問い合わせ・リンク' },
     { html: '  <span class="t-teal">spec</span>       会社スペック' },
     { html: '  <span class="t-teal">clear</span>      画面クリア' },
@@ -90,12 +90,12 @@ commands.services = commands.ls = (term) => {
     { html: '' },
     { html: '<span class="t-teal2 t-bold">C:\\BlueMenhera\\Services\\</span>' },
     { html: SEP },
-    { html: '  <span class="t-teal">ran2</span>     RAN\u00B2 BooTH    <span class="t-dim">展示会ブース施工</span>' },
-    { html: '  <span class="t-teal">bmh</span>      BMH           <span class="t-dim">統合型イベントソリューション</span>' },
-    { html: '  <span class="t-teal">dev</span>      アプリ開発支援  <span class="t-dim">App Dev Support</span>' },
-    { html: '  <span class="t-teal">sukipi</span>   すきぴチェッカー <span class="t-dim">自社アプリ Coming Soon</span>' },
-    { html: '  <span class="t-teal">oniden</span>   鬼電ちゃん     <span class="t-dim">鬼電の自動化ツール</span>' },
-    { html: '  <span class="t-teal">floppy</span>   super floppy  <span class="t-dim">自社アプリ</span>' },
+    { html: '  <span class="t-teal">ran2</span>     💡 RAN\u00B2 BooTH       <span class="t-dim">展示会ブース施工</span>' },
+    { html: '  <span class="t-teal">bmh</span>      🧙 BMH              <span class="t-dim">統合型イベントソリューション</span>' },
+    { html: '  <span class="t-teal">dev</span>      💻 アプリ開発支援    <span class="t-dim">App Dev Support</span>' },
+    { html: '  <span class="t-teal">sukipi</span>   🩷 すきぴチェッカー  <span class="t-dim">自社アプリ Coming Soon</span>' },
+    { html: '  <span class="t-teal">oniden</span>   👹 鬼電ﾁｬﾝ          <span class="t-dim">鬼電の自動化ツール</span>' },
+    { html: '  <span class="t-teal">floppy</span>   👁️ スーパーフロッピー <span class="t-dim">自社アプリ</span>' },
     { html: SEP },
     { html: '<span class="t-dim">6 items. Type command name for details.</span>' },
     { html: '' },
@@ -106,7 +106,7 @@ commands.services = commands.ls = (term) => {
 
 commands.ran2 = commands.booth = commands.ran = (term) => {
   term.typeLines(serviceBlock({
-    name: 'RAN\u00B2 BooTH',
+    name: '💡 RAN\u00B2 BooTH',
     category: '展示会ブース施工',
     main: '木工造作に負けないクオリティを、半額以下の価格で。',
     sub: '布とLEDライトで壁面全体が光る、次世代の展示会ブースです。',
@@ -118,11 +118,13 @@ commands.ran2 = commands.booth = commands.ran = (term) => {
 
 commands.bmh = commands.event = (term) => {
   term.typeLines(serviceBlock({
-    name: 'BMH',
+    name: '🧙 BMH',
     category: '統合型イベントソリューション',
     main: 'イベントを、構造から再設計する。',
-    sub: '多重下請け構造を解体する、統合型イベントソリューション。',
+    sub: 'Backstage Magical Hour \u2014 Event Production Solutions',
     description:
+      '舞台裏で「魔法の時間」をつくる、イベント制作ソリューション。\n' +
+      '\n' +
       'イベント業界では、\n' +
       '多重下請け構造により予算が分断され、\n' +
       '本来必要なクリエイティブや現場品質に資源が届かないという課題があります。\n' +
@@ -142,15 +144,22 @@ commands.bmh = commands.event = (term) => {
 
 commands.dev = commands.app = (term) => {
   term.typeLines(serviceBlock({
-    name: 'アプリ開発支援',
+    name: '💻 アプリ開発支援',
     category: 'App Development Support',
     main: '事業視点で、プロダクトをつくる。',
     sub: '企画設計から伴走する開発支援。',
     description:
+      'できること：Webアプリ、ネイティブアプリの開発\n' +
+      '\n' +
       'アイデア整理、要件定義、UI/UX設計、開発ディレクションまで一貫対応。\n' +
       '最小構成で市場検証できるプロダクトを設計します。\n' +
       '単なる受託ではなく、事業構造まで踏み込む伴走型支援。\n' +
-      'スタートアップ・新規事業開発に最適です。',
+      'スタートアップ・新規事業開発に最適です。\n' +
+      '\n' +
+      '[ 強み ]\n' +
+      '\u2022 UI/UXデザイン — ユーザー体験を重視した設計\n' +
+      '\u2022 スピード重視の開発 — MVP〜本開発までスモールスタート可能\n' +
+      '\u2022 運用・改善まで対応 — リリース後のグロース支援も',
   }));
 };
 
@@ -158,7 +167,7 @@ commands.sukipi = (term) => {
   term.typeLines([
     { html: '' },
     { html: SEP },
-    { html: `<span class="t-head">${esc('すきぴチェッカー')}</span>  <span class="t-dim">${esc('自社アプリ')}</span>  <span class="t-accent">Coming Soon</span>` },
+    { html: `<span class="t-head">${esc('🩷 すきぴチェッカー')}</span>  <span class="t-dim">${esc('自社アプリ')}</span>  <span class="t-accent">Coming Soon</span>` },
     { html: SEP },
     { html: '' },
     { html: `<span class="t-main">${esc('あなたの片想い、実は両想いかも？')}</span>` },
@@ -173,7 +182,7 @@ commands.sukipi = (term) => {
 
 commands.oniden = (term) => {
   term.typeLines(serviceBlock({
-    name: '鬼電ちゃん',
+    name: '👹 鬼電ﾁｬﾝ',
     category: '鬼電の自動化ツール',
     main: '起きるまで、かけ続けます。',
     sub: '',
@@ -188,7 +197,7 @@ commands.oniden = (term) => {
 
 commands.floppy = commands.sf = (term) => {
   term.typeLines(serviceBlock({
-    name: 'super floppy',
+    name: '👁️ スーパーフロッピー',
     category: '自社アプリ',
     main: '月末を、シンプルに。',
     sub: '時間単価メンバーの工数をリアルタイム可視化。',
@@ -206,7 +215,6 @@ commands.contact = (term) => {
     { html: SEP },
     { html: '  <a class="t-link" href="https://tally.so/r/MezNLg" target="_blank">お問い合わせフォーム</a>' },
     { html: '  <a class="t-link" href="https://jp.indeed.com/cmp/株式会社ブルーメンヘラ/jobs" target="_blank">採用情報</a>' },
-    { html: '  <a class="t-link" href="https://www.notion.so/menherasenpai/70a4f795950846b6aa3cb0d5ac47e005" target="_blank">会社概要（Notion）</a>' },
     { html: SEP },
     { html: '' },
   ]);
@@ -224,11 +232,9 @@ commands.spec = commands.info = (term) => {
     { html: '  <span class="t-dim">ceo:</span>      高桑蘭佳（CEO）' },
     { html: '  <span class="t-dim">coo:</span>      向山口冬威（COO）' },
     { html: '  <span class="t-dim">founded:</span>  2018' },
-    { html: '  <span class="t-dim">team:</span>     正社員 10名' },
-    { html: '  <span class="t-dim">staff:</span>    登録約 1,500名' },
-    { html: '  <span class="t-dim">revenue:</span>  ¥300,000,000 / year' },
+    { html: '  <span class="t-dim">team:</span>     社員7名／業務委託20名／アルバイト1600名' },
     { html: '  <span class="t-dim">biz:</span>      展示会ブース施工 / イベント制作運営 / アプリ開発' },
-    { html: '  <span class="t-dim">motto:</span>    <span class="t-teal">"ゆがみを、愛す。"</span>' },
+    { html: '  <span class="t-dim">mission:</span>  <span class="t-teal">"ゆがみを、愛す。"</span>' },
     { html: SEP },
     { html: '' },
   ]);

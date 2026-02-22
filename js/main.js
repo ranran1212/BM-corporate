@@ -56,8 +56,8 @@ const DEMO_SEQUENCE = [
   { cmd: 'sukipi',   delay: 2500 },
   { cmd: 'oniden',   delay: 2500 },
   { cmd: 'floppy',   delay: 2500 },
-  { cmd: 'contact',  delay: 3000 },
   { cmd: 'spec',     delay: 3000 },
+  { cmd: 'contact',  delay: 3000 },
 ];
 
 function runDemo() {

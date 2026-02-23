@@ -224,12 +224,14 @@ body {
 }
 
 .ascii-logo {
-  color: var(--teal);
-  font-size: 11px;
-  line-height: 1.3;
-  letter-spacing: 1px;
+  font-size: min(2.5vw, 14px);
+  line-height: 1.1;
+  letter-spacing: 0;
   white-space: pre;
 }
+.ascii-cyan  { color: #00e5ff; }
+.ascii-white { color: #fff; }
+.ascii-pink  { color: #ff40ff; }
 
 /* --- Lock Screen --- */
 body.is-locked .quick-cmds { display: none; }
@@ -241,5 +243,4 @@ body.is-locked .input-bar__field { -webkit-text-security: disc; }
   .output-wrap { padding: 10px 12px; }
   .input-bar { padding: 6px 12px; }
   .t-catch { font-size: 16px; letter-spacing: 2px; }
-  .ascii-logo { font-size: max(7px, 2.2vw); letter-spacing: 0; }
 }

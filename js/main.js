@@ -93,9 +93,34 @@ commands.demo = (term) => {
   autoTimer = setTimeout(runDemo, 1000);
 };
 
+/* ── command history ── */
+const history = [];
+let histIdx = -1;
+let histBuf = '';
+
 /* ── event listeners ── */
 
 inputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowUp' && !locked) {
+    e.preventDefault();
+    if (histIdx < history.length - 1) {
+      if (histIdx === -1) histBuf = inputEl.value;
+      histIdx++;
+      inputEl.value = history[history.length - 1 - histIdx];
+    }
+    return;
+  }
+  if (e.key === 'ArrowDown' && !locked) {
+    e.preventDefault();
+    if (histIdx > 0) {
+      histIdx--;
+      inputEl.value = history[history.length - 1 - histIdx];
+    } else if (histIdx === 0) {
+      histIdx = -1;
+      inputEl.value = histBuf;
+    }
+    return;
+  }
   if (e.key === 'Enter') {
     const value = inputEl.value;
     inputEl.value = '';
@@ -103,6 +128,11 @@ inputEl.addEventListener('keydown', (e) => {
     if (locked) {
       tryUnlock(value);
     } else {
+      if (value.trim()) {
+        history.push(value.trim());
+        histIdx = -1;
+        histBuf = '';
+      }
       exec(value);
     }
   }

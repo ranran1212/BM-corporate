@@ -275,7 +275,7 @@ commands.spec = commands.info = (term) => {
     { html: '  <span class="t-dim">coo:</span>      向山口冬威（COO）' },
     { html: '  <span class="t-dim">founded:</span>  2018' },
     { html: '  <span class="t-dim">team:</span>     社員7名／業務委託20名／アルバイト1600名' },
-    { html: '  <span class="t-dim">biz:</span>      Next-Generation Exhibition Booth Design & Build / イベント制作運営 / アプリ開発' },
+    { html: '  <span class="t-dim">biz:</span>      展示会ブース施工 / イベント制作運営 / アプリ開発' },
     { html: '  <span class="t-dim">mission:</span>  <span class="t-teal">"ゆがみを、愛す。"</span>' },
     { html: SEP },
     { html: '' },

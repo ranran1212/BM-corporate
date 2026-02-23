@@ -36,6 +36,11 @@
   box-sizing: border-box;
 }
 
+::selection {
+  background: var(--teal);
+  color: var(--bg);
+}
+
 html,
 body {
   height: 100%;
@@ -93,13 +98,12 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 12px 16px;
-  -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
 
 .output {
   white-space: pre-wrap;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* --- Input Bar --- */
@@ -129,6 +133,7 @@ body {
   font-family: inherit;
   font-size: var(--font-size-base);
   caret-color: var(--teal);
+  caret-shape: block;
 }
 
 .input-bar__field::placeholder {
